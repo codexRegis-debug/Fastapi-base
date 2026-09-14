@@ -1,0 +1,14 @@
+fastapi
+fastapi-users[sqlalchemy]
+fastapi-crudrouter
+uvicorn
+python-multipart
+sqlalchemy[asyncio]
+redis
+python-jose[cryptography]
+passlib[bcrypt]
+asyncpg
+alembic
+pydantic-settings
+asyncio-redis
+slowapi
