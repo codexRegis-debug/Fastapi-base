@@ -3,14 +3,14 @@ from typing import Optional
 from datetime import datetime
 
 class UserCreate(BaseModel):
-    email: EmailStr
-    password: str
-    business_name: str
+    useremail: EmailStr
+    userpassword: str
+    username: str
 
 class UserOut(BaseModel):
-    id: int
-    email: str
-    business_name: str
+    username: str
+    useremail: EmailStr
+    userpassword: str
     class Config:
         from_attributes = True
 

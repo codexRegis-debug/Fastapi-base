@@ -10,18 +10,21 @@ import asyncio
 router = APIRouter(tags=['Auth'])
 
 @router.post("/signup", response_model=schemas.UserOut)
-async def signup(user: schemas.UserCreate, db: AsyncSession = Depends(my_base.get_db)):
-    stmt = select(models.User).where(models.User.email == user.email)
+async def signup(
+    user: schemas.UserCreate,
+    db: AsyncSession = Depends(my_base.get_db)
+):
+    stmt = select(models.User).where(models.User.useremail == user.useremail)
     result = await db.execute(stmt)
     db_user = result.scalar_one_or_none()
     # db_user = await db.query(models.User).filter(models.User.email == user.email).first()
     if db_user:
         raise HTTPException(status_code=400, detail="Email already registered")
-    hashed_password = auth.get_password_hash(user.password)
+    hashed_password = auth.get_password_hash(user.userpassword)
     new_user = models.User(
-        email=user.email,
+        username=username,
+        useremail=user.email,
         hashed_password=hashed_password,
-        business_name=business_name
     )
 
     db.add()
@@ -30,7 +33,10 @@ async def signup(user: schemas.UserCreate, db: AsyncSession = Depends(my_base.ge
     return new_user
 
 @router.post("/login", response_model=schemas.Token)
-async def login(form_data: schemas.UserCreate, db: AsyncSession = Depends(my_base.get_db)):
+async def login(
+    form_data: schemas.UserCreate,
+    db: AsyncSession = Depends(my_base.get_db)
+):
     satetments = select(models.User).where(models.User.email == form_data.email)
     result = await db.execute(stmt)
     user = result.scalar_one_or_none()
@@ -47,6 +53,6 @@ async def login(form_data: schemas.UserCreate, db: AsyncSession = Depends(my_bas
         "token_type": "bearer"
     }
 
-@router.get('/users', response_model=schemas.Token) #Not sure but come later to debug
+@router.get('/users', response_model=schemas.Token) # Not sure but come later to debug
 async def read_users():
     pass #  come later to debug
