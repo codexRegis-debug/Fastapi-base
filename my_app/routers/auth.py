@@ -34,7 +34,7 @@ async def signup(
 
 @router.post("/login", response_model=schemas.Token)
 async def login(
-    form_data: schemas.UserCreate,
+    form_data: schemas.UserLogin,
     db: AsyncSession = Depends(my_base.get_db)
 ):
     satetments = select(models.User).where(models.User.email == form_data.email)
