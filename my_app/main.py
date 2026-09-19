@@ -13,7 +13,7 @@ async def init_models():
 
 app = FastAPI(
     title = "My App",
-    description="A multipurpose backend system"
+    description="A multipurpose backend system",
 )
 
 origins = ["http://localhost:5173"]
