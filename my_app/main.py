@@ -7,7 +7,6 @@ from my_app.models import models
 from my_app.core.users import fastapi_users, auth_backend
 from my_app.service.realtime import manager, Websocket, asyncpg
 
-
 async def init_models():
     async with engine.begin() as conn:
         await conn.run_sync(models.Base.metadata.create_all)

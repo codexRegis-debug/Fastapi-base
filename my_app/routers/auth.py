@@ -37,7 +37,7 @@ async def login(
     form_data: schemas.UserLogin,
     db: AsyncSession = Depends(my_base.get_db)
 ):
-    satetments = select(models.User).where(models.User.email == form_data.email)
+    statetments = select(models.User).where(models.User.email == form_data.email)
     result = await db.execute(stmt)
     user = result.scalar_one_or_none()
     # user = db.query(models.User).filter(models.User.email == user.email).first()
