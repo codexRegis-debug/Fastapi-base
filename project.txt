@@ -1,5 +1,10 @@
-To build an open-source alternative to Supabase/Firebase using Python 3.11.2, you will be assembling a system that handles Authentication (Firebase Auth / Supabase Auth), Automated CRUD Engine (Supabase Database Rest API), and infrastructure layers like Migrations, Rate Limiting, and Caching.
-A quick architectural note before we begin: The library asyncio-redis is unmaintained and incompatible with modern Python 3.11+ event loops. Instead, use the official, native async client included in the main core Redis package: import redis.asyncio as redis. Additionally, fastapi-crudrouter is optimized for Pydantic v1. If you use Pydantic v2, ensure you use versions or forks compatible with it, or consider an alternative like fastcrud.
+To build an open-source alternative to Supabase/Firebase using Python 3.11.2,
+you will be assembling a system that handles Authentication (Firebase Auth / Supabase Auth),
+Automated CRUD Engine (Supabase Database Rest API), and infrastructure layers like Migrations, Rate Limiting, and Caching.
+A quick architectural note before we begin: The library asyncio-redis is unmaintained and incompatible with modern Python 3.11+ event loops.
+Instead, use the official, native async client included in the main core Redis package: import redis.asyncio as redis.
+Additionally, fastapi-crudrouter is optimized for Pydantic v1. If you use Pydantic v2, ensure you use versions or forks compatible with it,
+or consider an alternative like fastcrud.
 
 Phase 1: Environment & Dependency Setup
 
@@ -36,7 +41,6 @@ supabase_clone/
 ├── app.py             # App instantiation & main router integration
 ├── alembic.ini        # Migration configuration file
 └── migrations/        # Database version control files
-Use code with caution.
 
 Phase 2: Configuration & Database Plumbing
 
@@ -107,4 +111,5 @@ Recommended Learning Resources
 • Database Management Systems: To master asynchronous engines, inspect the transaction models documented inside SQLAlchemy Asyncio Documentation.
 • Identity Provisioning: Read how pipelines secure endpoints on the FastAPI-Users Guides Platform.
 • In-Memory Architecture Handling: Review the proper application loop paradigms inside the Official Redis Python Async Execution Docs.
-Would you like help creating a Storage Service middleware (similar to Supabase Storage) using python-multipart, or should we look at creating custom Row-Level Security (RLS) policies?
+Would you like help creating a Storage Service middleware (similar to Supabase Storage) using python-multipart,
+or should we look at creating custom Row-Level Security (RLS) policies?

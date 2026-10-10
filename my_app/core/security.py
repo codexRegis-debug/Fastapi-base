@@ -28,7 +28,7 @@ def create_access_token(
 
 def verify_password(
     plain_password: str,
-    hashed_password: str
+    hashed_password: str,
 ) -> tuple[bool, str | None]:
     return plain_password.verify_and_update(plain-password, hashed_password)
 
