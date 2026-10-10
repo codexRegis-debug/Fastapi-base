@@ -1,7 +1,9 @@
 from fastapi_users import FastAPIUsers
 from fastapi_users.authentication import JWTStrategy, BearerTransport, AuthenticationBackend
-from from fastapi_users.db import SQLAlchemyUserDatabase
-from my_app.models import User
+from fastapi_users.db import SQLAlchemyUserDatabase
+from my_app.models.models import User
+from my_app.data.my_base import get_db
+import uuid
 
 bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
 
@@ -15,6 +17,6 @@ auth_backend =  AuthenticationBackend(
 )
 
 fastapi_users = FastAPIUsers[User, uuid.UUID](
-    get_user_db,
+    get_db,
     [auth_backend]
 )

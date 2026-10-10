@@ -1,4 +1,4 @@
-import ayncio
+import asyncio
 import json
 import asyncpg
 

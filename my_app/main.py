@@ -1,3 +1,4 @@
+# Main entrypoint
 from fastapi import FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
@@ -5,7 +6,8 @@ from my_app.routers import auth
 from my_app.data import my_base
 from my_app.models import models
 from my_app.core.users import fastapi_users, auth_backend
-from my_app.service.realtime import manager, Websocket, asyncpg
+from my_app.services.realtime import manager, asyncpg
+from fastapi import WebSocket
 
 async def init_models():
     async with engine.begin() as conn:
@@ -27,7 +29,7 @@ app.add_middleware(
 )
 
 @app.websocket("/realtime")   # Not sure if this should be here. Might migrate it to my_app.services.realtime.py later
-async def websocket_endpoint(websocket: Websocket):
+async def websocket_endpoint(websocket: WebSocket):
     await manager.connect(websocket)
     conn = await asyncpg.connect(dsn = settings.DATABASE_URL.replace("+asyncpg", ""))
     await conn.add_listener('items', lambda *args: asyncio.create_task(manager.broadcast(args[2])))
