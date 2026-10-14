@@ -18,7 +18,7 @@ app = FastAPI(
     description="A multipurpose backend system",
 )
 
-origins = ["http://localhost:5173"]
+origins = ["http://localhost:5173",]
 
 app.add_middleware(
     CORSMiddleware,
@@ -41,8 +41,9 @@ async def websocket_endpoint(websocket: WebSocket):
 
 app.include_router(auth.router, prefix="/api")
 
+'''
 app.include_router(
-    fastapi_users.get_auth_register_router(auth_backend),
+    fastapi_users.get_register_router(auth_backend),
     prefix = "/auth/jwt",
     tags = ["auth"],
 )
@@ -58,6 +59,7 @@ app.include_router(
     prefix = "/users",
     tags = ["users"],
 )
+'''
 
 @app.get('/api')
 async def get_message():

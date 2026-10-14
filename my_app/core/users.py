@@ -18,5 +18,5 @@ auth_backend =  AuthenticationBackend(
 
 fastapi_users = FastAPIUsers[User, uuid.UUID](
     get_db,
-    [auth_backend]
+    [auth_backend],
 )

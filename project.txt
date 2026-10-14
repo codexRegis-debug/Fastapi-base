@@ -26,7 +26,6 @@ redis==5.0.1
 slowapi==0.1.9
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
-Use code with caution.
 
 Step 2: Establish the Project Schema Layout
 
